@@ -13,35 +13,35 @@
 **/
 
 
-// STEP 1 DRIVER CODE
-const {fetchMyIP, fetchCoordsByIP, fecthISSFlyOverTimes} = require("./iss");
+const {nextISSTimesForMyLocation} = require("./iss");
+
+/**
+ * Input:
+ *   Array of data objects defining the next fly-overs of the ISS.
+ *   [ { risetime: <number>, duration: <number> }, ... ]
+ * Returns:
+ *   undefined
+ * Sideffect:
+ *   Console log messages to make that data more human readable.
+ *   Example output:
+ *   Next pass at Mon Jun 10 2019 20:11:44 GMT-0700 (Pacific Daylight Time) for 468 seconds!
+**/
+// Function to print flyOverTimes in a more readable way
+const printFlyOverTimes = function(flyOverTimes) {
+  flyOverTimes.forEach(flyOver => {
+    const time = new Date(0); // create new Date instance (Jan 01, 1970)
+    time.setUTCSeconds(flyOver.risetime); // set time to flyOver time
+    const duration = flyOver.duration;
+    console.log(`Next pass at ${time} for ${duration} seconds!`)
+  });
+}
 
 
-// fetchMyIP((err, ip) => {
-//   if (err) {
-//     console.log("It didn't work!", err);
-//     return;
-//   }
-//   console.log("It worked! IP Address:", ip);
-// });
-
-
-
-// STEP 2 DRIVER CODE
-// fetchCoordsByIP("172.218.46.150", (err, coordinates) => {
-//   if (err) {
-//     console.log("It didn't work!", err);
-//     return;
-//   }
-//   console.log("It worked! Coordinates:", coordinates);
-// });
-
-
-// STEP 3 DRIVER CODE
-// fecthISSFlyOverTimes({ latitude: 50.1098, longitude: -120.801 }, (error, flyovers) => {
-//   if (error) {
-//     console.log("It didn't work!", error);
-//     return;
-//   }
-//   console.log(flyovers);
-// });
+nextISSTimesForMyLocation((error, flyOverTimes) => {
+  if (error) {
+    console.log("It didn't work!", error);
+    return;
+  }
+  // if no errors throughout, print times in a readable format
+  printFlyOverTimes(flyOverTimes);
+});
