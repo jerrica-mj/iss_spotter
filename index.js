@@ -14,7 +14,7 @@
 
 
 // STEP 1 DRIVER CODE
-const {fetchMyIP, fetchCoordsByIP} = require("./iss");
+const {fetchMyIP, fetchCoordsByIP, fecthISSFlyOverTimes} = require("./iss");
 
 
 // fetchMyIP((err, ip) => {
@@ -28,10 +28,20 @@ const {fetchMyIP, fetchCoordsByIP} = require("./iss");
 
 
 // STEP 2 DRIVER CODE
-fetchCoordsByIP("172.218.46.150", (err, data) => {
-  if (err) {
-    console.log("It didn't work!", err);
-    return;
-  }
-  console.log("It worked! Coordinates:", data);
-});
+// fetchCoordsByIP("172.218.46.150", (err, coordinates) => {
+//   if (err) {
+//     console.log("It didn't work!", err);
+//     return;
+//   }
+//   console.log("It worked! Coordinates:", coordinates);
+// });
+
+
+// STEP 3 DRIVER CODE
+// fecthISSFlyOverTimes({ latitude: 50.1098, longitude: -120.801 }, (error, flyovers) => {
+//   if (error) {
+//     console.log("It didn't work!", error);
+//     return;
+//   }
+//   console.log(flyovers);
+// });
