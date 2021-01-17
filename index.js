@@ -13,7 +13,8 @@
 **/
 
 
-// const {fetchMyIP} = require("./iss");
+// STEP 1 DRIVER CODE
+const {fetchMyIP, fetchCoordsByIP} = require("./iss");
 
 
 // fetchMyIP((err, ip) => {
@@ -23,3 +24,14 @@
 //   }
 //   console.log("It worked! IP Address:", ip);
 // });
+
+
+
+// STEP 2 DRIVER CODE
+fetchCoordsByIP("172.218.46.150", (err, data) => {
+  if (err) {
+    console.log("It didn't work!", err);
+    return;
+  }
+  console.log("It worked! Coordinates:", data);
+});
